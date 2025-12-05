@@ -1,0 +1,46 @@
+-- FoodShare database schema
+-- Save as: foodshare_db.sql
+
+-- Safety/setup
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- Drop and recreate database (optional)
+DROP DATABASE IF EXISTS `foodshare_db`;
+CREATE DATABASE `foodshare_db` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `foodshare_db`;
+
+-- Users table
+CREATE TABLE `users` (
+    `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `email` VARCHAR(50) NOT NULL UNIQUE,
+    `password` VARCHAR(255) NOT NULL,
+    `role` ENUM('donor', 'receiver', 'admin') NOT NULL,
+    `restaurant_name` VARCHAR(100) NULL,
+    `contact_no` VARCHAR(20) NULL,
+    `address` TEXT NULL,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Food items table
+CREATE TABLE `food_items` (
+    `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `restaurant_name` VARCHAR(100) NOT NULL,
+    `food_name` VARCHAR(100) NOT NULL,
+    `description` TEXT,
+    `quantity` INT NOT NULL,
+    `expiry_date` DATE,
+    `category` VARCHAR(50),
+    `image_url` VARCHAR(255),
+    `status` ENUM('available', 'reserved', 'donated') DEFAULT 'available',
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `user_id` INT(6) UNSIGNED,
+    CONSTRAINT `fk_food_items_user`
+        FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+-- Optional: seed data (uncomment and adjust as needed)
+-- INSERT INTO `users` (`email`, `password`, `role`) VALUES
+-- ('admin@example.com', '$2y$10$replace_with_password_hash', 'admin');

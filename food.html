@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Donate & Waste Management</title>
+    <style>
+        /* All CSS from the previous response */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f2f5; /* Updated background color */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #fff;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem; /* Space between logo image and text */
+            visibility: visible;
+        }
+
+        .logo img {
+            height: 50px; /* Adjusted logo size */
+            width: auto;
+            display: inline-block;
+            visibility: visible;
+            opacity: 1;
+            filter: brightness(1.2) contrast(1.3) saturate(1.2);
+            border-radius: 8px;
+            padding: 4px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+            border: 1px solid #00b8a9;
+            vertical-align: middle;
+        }
+
+        .logo a {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #005792; /* Updated blue color */
+            text-decoration: none;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00b8a9; /* Updated teal hover color */
+        }
+
+        .signin-button {
+            background-color: #005792; /* Updated blue color */
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .signin-button:hover {
+            background-color: #003d5c; /* Updated hover blue */
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0, 61, 92, 0.7), rgba(0, 61, 92, 0.7)), url('https://images.unsplash.com/photo-1542838139-497b778c1995?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            max-width: 600px;
+        }
+
+        .cta-button {
+            background-color: #00b8a9; /* Updated teal color */
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #009688; /* Updated hover teal */
+        }
+
+        .about-section, .roles-section {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .roles-section h2 {
+            margin-bottom: 2rem;
+        }
+
+        .role-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .role-card {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            text-align: center;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .role-card h3 {
+            color: #005792; /* Updated blue color */
+            margin-top: 0;
+        }
+
+        .role-button {
+            background-color: #005792; /* Updated blue color */
+            color: #fff;
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .role-button:hover {
+            background-color: #003d5c; /* Updated hover blue */
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: #333;
+            color: #fff;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            nav {
+                flex-direction: column;
+            }
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            .role-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .auth-container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 350px;
+            text-align: center;
+            margin: 2rem auto;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .toggle-form-btn {
+            background: none;
+            border: none;
+            color: #005792; /* Updated blue color */
+            cursor: pointer;
+            text-decoration: underline;
+            margin-top: 1rem;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #005792; /* Updated blue color */
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="OIP (4).jpg" alt="FoodShare Logo">
+                <a href="#home">FoodShare</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#roles">Roles</a></li>
+                <li><button class="signin-button" onclick="openSignup()">Sign Up</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero-section">
+            <h1>Fighting Food Waste, Together.</h1>
+            <p>Join us in connecting surplus food with those who need it most.</p>
+            <button class="cta-button" onclick="scrollToRoles()">Get Started</button>
+        </section>
+
+        <section id="about" class="about-section">
+            <h2>About Us</h2>
+            <p>Our mission is to reduce food waste and combat hunger by creating a seamless platform that connects food donors with local organizations and individuals in need. By leveraging technology, we make it easy for restaurants, grocery stores, and individuals to donate their surplus food, ensuring it reaches those who can use it.</p>
+        </section>
+
+        <section id="roles" class="roles-section">
+            <h2>Our Roles</h2>
+            <div class="role-container">
+                <div class="role-card" id="donor-card">
+                    <h3>Donor</h3>
+                    <p>Individuals or businesses with surplus food to donate. Easily post a donation and track its status.</p>
+                    <a class="role-button" href="donor_login.php" style="display:inline-block; text-decoration:none; text-align:center;">I'm a Donor</a>
+                </div>
+                <div class="role-card" id="receiver-card">
+                    <h3>Receiver</h3>
+                    <p>Organizations or individuals in need of food. Browse available donations and request what you need.</p>
+                    <a class="role-button" href="receiver_login.php" style="display:inline-block; text-decoration:none; text-align:center;">I'm a Receiver</a>
+                </div>
+                <div class="role-card" id="admin-card">
+                    <h3>Admin</h3>
+                    <p>Oversee the platform, manage users, and approve donations to ensure a smooth and secure process.</p>
+                    <a class="role-button" href="admin_login.php" style="display:inline-block; text-decoration:none; text-align:center;">I'm an Admin</a>
+                </div>
+                <div class="role-card" id="delivery-card">
+                    <h3>Delivery Partner</h3>
+                    <p>Join our team of delivery heroes who make sure every donation reaches the people who need it most—apply in a few quick steps.</p>
+                    <a class="role-button" href="delivery_job_form.php" style="display:inline-block; text-decoration:none; text-align:center;">Apply as Delivery Partner</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="auth-section" class="auth-container hidden">
+            <div id="error-message" class="alert alert-error" style="display: none;"></div>
+          <div id="login-form">
+    <h2>Login</h2>
+    <form action="login.php" method="POST">
+        <div class="form-group">
+            <label for="login-email">Email:</label>
+            <input type="email" id="login-email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" name="password" required>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+    <button class="toggle-form-btn" onclick="toggleForm('signup')">Don't have an account? Sign Up</button>
+</div>
+
+            <div id="signup-form" class="hidden">
+    <h2>Sign Up</h2>
+    <form action="signup.php" method="POST" id="signupForm">
+        <div class="form-group">
+            <label for="role">Role:</label>
+            <select id="role" name="role" onchange="toggleDonorFields()">
+                <option value="donor">Donor</option>
+                <option value="receiver">Receiver</option>
+            </select>
+        </div>
+        <div id="donor-fields">
+            <div class="form-group">
+                <label for="restaurant-name">Restaurant Name *</label>
+                <input type="text" id="restaurant-name" name="restaurant_name" placeholder="Enter restaurant name">
+            </div>
+            <div class="form-group">
+                <label for="contact-no">Contact Number *</label>
+                <input type="tel" id="contact-no" name="contact_no" maxlength="10" pattern="[0-9]{10}" placeholder="10 digits">
+            </div>
+            <div class="form-group">
+                <label for="address">Address *</label>
+                <textarea id="address" name="address" rows="3" placeholder="Enter full address"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="signup-email">Email:</label>
+            <input type="email" id="signup-email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="signup-password">Password:</label>
+            <input type="password" id="signup-password" name="password" required>
+        </div>
+        <button type="submit">Sign Up</button>
+    </form>
+    <button class="toggle-form-btn" onclick="toggleForm('login')">Already have an account? Login</button>
+</div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 FoodShare. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = e.target.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Check for error messages in URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+            const logout = urlParams.get('logout');
+            
+            if (error) {
+                const errorDiv = document.getElementById('error-message');
+                if (errorDiv) {
+                    errorDiv.textContent = error;
+                    errorDiv.style.display = 'block';
+                    // Show the auth section
+                    document.getElementById('auth-section').classList.remove('hidden');
+                    // Scroll to auth section
+                    document.getElementById('auth-section').scrollIntoView({ behavior: 'smooth' });
+                    // Initialize donor fields when error shows signup form
+                    setTimeout(toggleDonorFields, 200);
+                }
+            }
+            
+            // Show logout success message
+            if (logout === '1') {
+                const successMessage = document.createElement('div');
+                successMessage.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #d4edda;
+                    color: #155724;
+                    padding: 1rem 1.5rem;
+                    border-radius: 5px;
+                    border: 1px solid #c3e6cb;
+                    z-index: 1000;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                    animation: slideIn 0.3s ease-out;
+                `;
+                successMessage.innerHTML = '✅ Successfully logged out!';
+                document.body.appendChild(successMessage);
+                
+                // Remove message after 3 seconds
+                setTimeout(() => {
+                    successMessage.style.animation = 'slideOut 0.3s ease-in';
+                    setTimeout(() => successMessage.remove(), 300);
+                }, 3000);
+                
+                // Clean URL
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+            
+            // Initialize donor fields on page load
+            setTimeout(toggleDonorFields, 100);
+        });
+
+        function scrollToRoles() {
+            document.getElementById('roles').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showForm(role) {
+            const authSection = document.getElementById('auth-section');
+            const roleSelect = document.getElementById('role');
+            
+            authSection.classList.remove('hidden');
+            authSection.scrollIntoView({ behavior: 'smooth' });
+
+            if (role === 'donor' || role === 'receiver') {
+                toggleForm('signup');
+                roleSelect.value = role;
+                toggleDonorFields(); // Update donor fields visibility
+            } else if (role === 'admin' || role === 'login') {
+                toggleForm('login');
+            }
+        }
+
+        function toggleForm(formType) {
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+            if (formType === 'login') {
+                loginForm.classList.remove('hidden');
+                signupForm.classList.add('hidden');
+            } else {
+                loginForm.classList.add('hidden');
+                signupForm.classList.remove('hidden');
+                // Update donor fields visibility when signup form is shown
+                setTimeout(toggleDonorFields, 100);
+            }
+        }
+
+        function openSignup() {
+            const authSection = document.getElementById('auth-section');
+            authSection.classList.remove('hidden');
+            toggleForm('signup');
+            authSection.scrollIntoView({ behavior: 'smooth' });
+            // Initialize donor fields when signup form is opened
+            setTimeout(toggleDonorFields, 100);
+            const emailInput = document.getElementById('signup-email');
+            if (emailInput) {
+                setTimeout(() => emailInput.focus(), 300);
+            }
+        }
+
+        function toggleDonorFields() {
+            const roleSelect = document.getElementById('role');
+            const donorFields = document.getElementById('donor-fields');
+            const restaurantName = document.getElementById('restaurant-name');
+            const contactNo = document.getElementById('contact-no');
+            const address = document.getElementById('address');
+            
+            if (!roleSelect || !donorFields || !restaurantName || !contactNo || !address) {
+                return; // Elements not found yet
+            }
+            
+            const role = roleSelect.value;
+            
+            if (role === 'donor') {
+                donorFields.style.display = 'block';
+                restaurantName.setAttribute('required', 'required');
+                contactNo.setAttribute('required', 'required');
+                address.setAttribute('required', 'required');
+            } else {
+                donorFields.style.display = 'none';
+                restaurantName.removeAttribute('required');
+                contactNo.removeAttribute('required');
+                address.removeAttribute('required');
+            }
+        }
+    </script>
+</body>
+</html>
